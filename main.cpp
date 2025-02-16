@@ -1,0 +1,58 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <bits/stdc++.h>
+#include "WordTree.h"
+#include "WordNode.h"
+using namespace std;
+
+int main()
+{
+    fstream file;
+    string line, word, filename;
+    int lineNumber = 0;
+    filename = "TestLab2.txt";
+    file.open(filename.c_str());
+    WordTree * tree = new WordTree;
+    while (getline(file, line)) {
+        lineNumber += 1;
+        stringstream ss( line );
+        while ( ss >> word ) {
+            word.erase(remove(word.begin(), word.end(), ','), word.end());
+            word.erase(remove(word.begin(), word.end(), '.'), word.end());
+            word.erase(remove(word.begin(), word.end(), ';'), word.end());
+            word.erase(remove(word.begin(), word.end(), '-'), word.end());
+            transform (word.begin(), word.end(), word.begin(), ::tolower);
+            tree->insert(word,lineNumber);
+        }
+    }
+    tree->printTreeInOrder();
+    cout << "There are " << tree->countWords() << " words in the file" << endl;
+    cout << "There are " << tree->countUniqueWords() << " unique words in the file"
+         << endl;
+    cout << "Alphabetical first word: " << tree->firstWord() << endl;
+    cout << "Alphabetical last word: " << tree->lastWord() << endl;
+    vector<int> occurrences;
+    occurrences = tree->wordLines("computer");
+    cout << "The word computer appears on the following lines: ";
+    for (unsigned i=0; i<occurrences.size(); i++){
+        cout << ' ' << occurrences[i];
+    }
+    cout << endl;
+    vector<string> frequentWords;
+    frequentWords = tree->mostFrequent();
+    cout << "The most frequent word(s): ";
+    for (unsigned i=0; i<frequentWords.size(); i++){
+        cout << frequentWords[i] << ' ';
+    }
+    cout << endl;
+    return 0;
+}
