@@ -1,9 +1,10 @@
 /******************************************************************************
 
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
+This program analyzes the text in an input file, counting the number of times
+each word appears in the text and the line numbers where it appears. 
+
+Author:Rocco Marino
+Due Date 2/16/2025
 
 *******************************************************************************/
 #include <iostream>
