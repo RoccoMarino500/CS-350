@@ -44,9 +44,11 @@ void WordTree::printTreeInOrder() {
 }
 
 void WordTree::printTreeInOrder(WordNode* node) {
-    if (node == nullptr) return;
+    if (node == nullptr) {
+        return;
+    }
     printTreeInOrder(node->m_left);
-    cout << node->m_key << " ";
+    std::cout << node->m_key << " ";
     printTreeInOrder(node->m_right);
 }
 
